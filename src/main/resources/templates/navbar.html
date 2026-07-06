@@ -1,14 +1,25 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
 <html>
-      <div class="banner"></div> 
-                <nav> 
-                   
-                    <a th:href="@{/cadastrofilmes}">Cadastro de filmes</a> 
-                    <a th:href="@{/listagem}">Visualizar filmes</a> 
-                  <a th:href="@{/telainicio}">Tela inicial</a> 
-                </nav> 
+    <head>
+        <title>CineProject</title> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    
+        <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"> 
+        
+       
+        <link rel="stylesheet" th:href="@{${css == 'escuro' ? '/css/escuro.css' : '/css/claro.css'}}">
+    </head>
+    
+    <body>
+    
+        <img th:src="@{/css/cine.jpg}" alt="Banner do Cinema" class="img-fluid">
+
+        <nav> 
+            <a th:href="@{/cadastrofilmes}" class="btn btn-group-toggle">Cadastro de filmes</a> 
+            <a th:href="@{/listagem}" class="btn btn-group-toggle">Visualizar filmes</a> 
+            <a th:href="@{/telainicio}" class="btn btn-group-toggle">Tela inicial</a> 
+        </nav> 
+    </body>
 </html>
