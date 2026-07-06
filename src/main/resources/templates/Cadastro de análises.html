@@ -1,0 +1,25 @@
+<html>
+<head>
+    <title>Sua análise</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{${css == 'escuro' ? '/css/escuro.css' : '/css/claro.css'}}">
+</head>
+<body>
+    <header th:insert="navbar.html"></header>
+    <h1>Faça a sua análise!</h1>
+    <form th:action="@{/form-analise}" method="POST" th:object="${analise}">
+        <p>Escreva aqui sua análise: </p>
+        <textarea rows="7" th:field="${analise.comentario}" class="form-control" required></textarea>
+        
+        <p>Insira uma nota para esse filme:</p>
+        <input type="number" max="10" min="0" th:field="${analise.nota}" class="form-control" required>
+        
+        <input type="hidden" th:field="${analise.id}">
+        <input type="hidden" name="id" th:field="${analise.filme}" th:value="${filme}">
+
+        <button type="submit" class="btn">Confirmar</button>
+    </form>
+</body>
+</html>

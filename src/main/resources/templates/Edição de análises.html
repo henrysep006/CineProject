@@ -1,0 +1,92 @@
+<html>
+<head>
+    <title>Sua análise</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{${css == 'escuro' ? '/css/escuro.css' : '/css/claro.css'}}">
+</head>
+<body>
+    <header th:insert="navbar.html"></header>
+    <h1>Alteração de análise!</h1>
+    <form  id="form" th:action="@{/attform}" method="POST" th:object="${analise}">
+        <p>Escreva aqui sua análise: </p>
+        <textarea rows="7" id="comentario" name="comentario" th:field="${analise.comentario}" class="form-control" required></textarea>
+        
+        <p>Insira uma nota para esse filme:</p>
+        <input type="number" id="nota" name="nota" max="10" min="0" th:field="${analise.nota}" class="form-control" required>
+        
+          <input type="hidden" id="filmeId" th:value="${analise.filme.id}">
+          <input type="hidden" id="analiseId" th:value="${analise.id}">
+       <input type="hidden" th:field="${analise.filme.id}" th:value="${analise.filme}">
+
+           <p><input class="btn" type="submit" value="Confirmar"/></p>
+    </form>
+    
+     <script>
+             
+             document.getElementById('form').addEventListener('submit', function(event) {
+         
+            event.preventDefault();
+          var id =  document.getElementById('analiseId').value;
+                var idFilme =  document.getElementById('filmeId').value;
+                 const analiseAtualizada = {
+        
+                   comentario: document.getElementById('comentario').value,
+                    nota:  document.getElementById('nota').value
+                 
+                   
+                };
+              
+                
+            fetch(`/analise/atualizar/`+id, {
+                method: 'PUT',
+                 headers: {
+        'Content-Type': 'application/json' 
+    },
+    body: JSON.stringify(analiseAtualizada)    
+            })
+            .then(response => {
+                if (response.ok) {
+                    if(confirm("A análise será atualizada")){
+                    window.location.href = "/detalhes?id=" + idFilme;}
+                } else {
+                    alert('Algo deu errado!');
+                    console.error('Erro ao deletar o objeto.');
+                }
+            }).catch(error => console.error('Erro:', error));
+        
+        
+             
+             });
+                  function mostrarEdicao() {
+                      
+                      var id =  document.getElementById('analiseId').value;
+                   
+                 
+                      
+                      
+            fetch('/analise/pesquisar/' + id)  
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('nota').value = data.nota; 
+            document.getElementById('comentario').value = data.comentario;
+          
+                })
+                .catch(error => console.error('Erro:', error));
+        };
+                
+               
+          
+     document.addEventListener('DOMContentLoaded', function() {
+            mostrarEdicao();
+        });
+               
+               
+         
+             
+        
+        </script>
+    
+</body>
+</html>

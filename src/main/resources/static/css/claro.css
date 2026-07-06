@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 470px;
+    margin: 50px auto;
+    font-family: Arial, sans-serif;
+
+}
+.analises{
+   margin: 20px;
+   padding: 10px;
+    background-color: #e6e6e6;
+    
+    
+}
+.banner{
+   background-image: url('https://blog.arboimoveis.com.br/wp-content/uploads/2022/06/melhores-cinemas-de-Sao-Paulo-1.jpg'); 
+              background-repeat: no-repeat; 
+background-size: cover; 
+             height: 200px; 
+     background-color: #e6e6e6;
+    
+}
+button:hover{
+    background-color: #e6e6e6;
+    
+}
+.container{
+     
+        display: flex;        
+        justify-content: start;
+        justify-items: start;
+        align-items:flex-start;
+    
+}
+tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+.Btn{
+
+    background-color: #5d95d1;
+    color: white;
+    margin-right: 10px;
+    padding: 2px 3px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+
+}
+.Btn:hover{
+    background-color:#0056b3
+
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+  
+ <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"> 
+                   <title>Tela Inicial</title> 
+        <meta charset="UTF-8">
+
+ <link rel="stylesheet" th:href="@{${css == 'escuro' ? '/css/escuro.css' : '/css/claro.css'}}">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head >
+    <body>
+        <header th:insert="navbar.html"></header>
+        <h1>Bem vindo á página de análises de filmes!</h1>
+        <p>O que você deseja?</p>
+        <p><a th:href="@{/cadastrofilmes}">Cadastrar um filme</a></p>
+         <p><a th:href="@{/listagem}">Fazer uma análise</a></p>
+         
+          <p><a class="btn btn-primary" th:href="@{/preferencias}">Preferências</a></p>
+    </body>
+</html>

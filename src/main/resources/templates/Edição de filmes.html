@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Edite os dados</title>
+         <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{${css == 'escuro' ? '/css/escuro.css' : '/css/claro.css'}}"> 
+    </head>
+    <body>
+         <header th:insert="navbar.html"></header>
+        <h1>Atualize os dados do filme:</h1>
+        <div></div>
+        <p>
+        <form id="form" th:action="@{/atualizar-filme}" method="POST" th:object="${filme}">
+            <p>Título: <input data-id="[[${filme.id}]]" id="titulo" name="titulo" type="text"  class="form-control" th:field="${filme.titulo}" required></p><!-- comment -->
+            <p>Sinopse: <input type="text" id="sinopse" name="sinopse" class="form-control" th:field="${filme.sinopse}" required></p>
+            <p>Gênero: <input id="genero" type="text"  class="form-control" th:field="${filme.genero}" required></p>
+            <p>Ano de lançamento: <input id="ano" type="number" class="form-control" th:field="${filme.ano}" min="1888" max="2026" required></p>
+       <input type="hidden" id="filmeId" th:value="${filme.id}">
+    
+                    <p><input class="btn" type="submit" th:onclick="atualizarFilme([[${filme.id}]])" value="Confirmar"/></p>
+            
+        </form>
+        
+
+   
+         <script>
+             
+             document.getElementById('form').addEventListener('submit', function(event) {
+         
+            event.preventDefault();
+          var id =  document.getElementById('filmeId').value;
+                
+                 const filmeAtualizado = {
+        
+                    titulo: document.getElementById('titulo').value,
+                    sinopse:  document.getElementById('sinopse').value,
+                    genero: document.getElementById('genero').value,
+                    ano: document.getElementById('ano').value
+                   
+                };
+              
+                
+            fetch(`/filme/atualizar/`+id, {
+                method: 'PUT',
+                 headers: {
+        'Content-Type': 'application/json' 
+    },
+    body: JSON.stringify(filmeAtualizado)    
+            })
+            .then(response => {
+                if (response.ok) {
+                    if(confirm("O filme será atualizado")){
+                     window.location.href = "/detalhes?id=" + id;}
+                } else {
+                    alert('Algo deu errado!');
+                    console.error('Erro ao deletar o objeto.');
+                }
+            })
+            .catch(error => console.error('Erro:', error));
+        
+        
+             
+             });
+                  function mostrarEdicao() {
+                      
+                      var id =  document.getElementById('filmeId').value;
+                   
+                 
+                      
+                      
+            fetch('/filme/pesquisar/' + id)  // Faz uma requisição para a API que retorna os dados do usuário
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('titulo').value = data.titulo; 
+            document.getElementById('sinopse').value = data.sinopse;
+            document.getElementById('genero').value = data.genero;
+            document.getElementById('ano').value = data.ano;// Define o valor do campo 'nome'
+                })
+                .catch(error => console.error('Erro:', error));
+        };
+                
+               document.addEventListener('DOMContentLoaded', function() {
+            mostrarEdicao();
+        });
+          
+     
+               
+               
+           
+     
+             
+        
+        </script>
+    </body>
+</html>

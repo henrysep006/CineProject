@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Cadastro de filme</title>
+         <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"> 
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" th:href="@{${css == 'escuro' ? '/css/escuro.css' : '/css/claro.css'}}">
+    </head>
+    <body>
+         <header th:insert="navbar.html"></header>
+        <h1>Cadastrar filme:</h1>
+        <div></div>
+        <p>
+        <form th:action="@{/cadastrar-filme}" method="POST" th:object="${filme}">
+            <p>Título: <input type="text" class="form-control" th:field="${filme.titulo}" required></p><!-- comment -->
+            <p>Sinopse: <input type="text" class="form-control" th:field="${filme.sinopse}" required></p>
+            <p>Gênero: <input type="text"  class="form-control" th:field="${filme.genero}" required></p>
+            <p>Ano de lançamento: <input type="number" class="form-control" th:field="${filme.ano}" min="1888" max="2026" required></p>
+       <input type="hidden" th:field="${filme.id}"/>
+    
+                    <p><input type="submit" class="btn" value="Cadastrar"/></p>
+            
+        </form>
+        </p>
+    </body>
+</html>

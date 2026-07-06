@@ -1,0 +1,66 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 2 de nov. de 2024, 11:07:34
+    Author     : Henry
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 470px;
+    margin: 50px auto;
+    font-family: Arial, sans-serif;
+    background-color: #121212; 
+    color: #e0e0e0; 
+}
+
+.analises {
+    margin: 20px;
+    padding: 10px;
+    background-color: #1f1f1f; 
+    border: 1px solid #333333; 
+}
+
+.banner {
+    background-image: url('https://blog.arboimoveis.com.br/wp-content/uploads/2022/06/melhores-cinemas-de-Sao-Paulo-1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px;
+    background-color: #333333; 
+}
+
+button:hover {
+    background-color: #333333; 
+}
+
+.container {
+    display: flex;
+    justify-content: start;
+    justify-items: start;
+    align-items: flex-start;
+}
+
+tbody tr:hover {
+    background-color: #2a2a2a; /* Cor de fundo ao passar o mouse sobre uma linha */
+}
+
+.Btn {
+    background-color: #5d95d1;
+    color: white;
+    margin-right: 10px;
+    padding: 2px 3px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.Btn:hover {
+    background-color: #004080; 
+}
